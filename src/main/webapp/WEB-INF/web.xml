@@ -9,13 +9,13 @@
         <welcome-file>/home</welcome-file>
     </welcome-file-list>
 
-    <servlet>
-        <servlet-name>home</servlet-name>
-        <servlet-class>uz.pdp.library.servlet.HomeServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>home</servlet-name>-->
+<!--        <servlet-class>uz.pdp.library.servlet.HomeServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>home</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>home</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>

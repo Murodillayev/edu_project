@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "home-servlet", value = "/home")
+@WebServlet(name = "home-servlet", value = {"/home", "/"})
 public class HomeServlet extends HttpServlet {
     private final BookDao bookDao = BookDao.getInstance();
     private final AuthorDao authorDao = AuthorDao.getInstance();
@@ -23,10 +23,6 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("userId") == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
         List<Book> books = bookDao.findAll();
         List<BookDto> dtos = toDto(books);
         req.setAttribute("books", dtos);
@@ -35,22 +31,6 @@ public class HomeServlet extends HttpServlet {
 
 //        resp.sendRedirect("index.jsp"); // new http request
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private List<BookDto> toDto(List<Book> books) {

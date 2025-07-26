@@ -50,17 +50,14 @@
 <% authors = (List<Author>) request.getAttribute("authors");%>
 <% book = (Book) request.getAttribute("book");%>
 
-<h2>Manga Kitobini Yangilash</h2>
-<h2><%=book.toString()%>
-</h2>
-<h2><%=authors.toString()%>
-</h2>
+<h2>Kitobini tahrirlash</h2>
+
 <form action="/book" method="post">
     <input type="text" name="id" value="<%=book.getId()%>" hidden>
     <input type="text" name="action" value="update" hidden>
     <div class="form-group">
         <label for="bookName">Kitob Nomi:</label>
-        <input type="text" id="bookName" name="name" value="<%=book.getName()%>" required>
+        <input type="text" id="bookName" name="name" value="<%=book.getName()  %>" required>
     </div>
     <div class="form-group">
         <label for="authorId">Muallif:</label>
@@ -69,10 +66,10 @@
                 for (Author author : authors) {
                     if (book.getAuthorId().equals(author.getId())) {
             %>
-            <option value="<%=author.getId()%>" selected><%=author.getFirstName()%>
+            <option value="<%=author.getId()%>" selected><%=author.getFirstName() + " " + author.getLastName()%>
             </option>
             <%} else {%>
-            <option value="<%=author.getId()%>"><%=author.getFirstName()%>
+            <option value="<%=author.getId()%>"><%=author.getFirstName() + " " + author.getLastName()%>
                     <%}}%>
         </select>
     </div>

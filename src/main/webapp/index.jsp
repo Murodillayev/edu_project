@@ -143,7 +143,6 @@
 
             for (BookDto book : books) {%>
 
-
         <div class="col">
             <div class="card h-100">
                 <img src="https://via.placeholder.com/300x220?text=Alkimyogar" class="card-img-top"
