@@ -11,4 +11,5 @@ public class Book extends IdEntity {
     private String name;
     private String authorId;
     private Integer publishYear;
+    private String imageUrl;
 }

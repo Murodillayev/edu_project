@@ -45,6 +45,7 @@ public class HomeServlet extends HttpServlet {
             dto.setId(book.getId());
             dto.setName(book.getName());
             dto.setPublishYear(book.getPublishYear());
+            dto.setImageUrl(book.getImageUrl());
             dto.setAuthorName(author.getFirstName() + " " + author.getLastName());
             dtos.add(dto);
 

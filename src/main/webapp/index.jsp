@@ -1,7 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="uz.pdp.library.model.Book" %>
 <%@ page import="uz.pdp.library.dto.BookDto" %>
-<%@ page import="uz.pdp.library.dao.BookDao" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="uz">
@@ -145,7 +143,7 @@
 
         <div class="col">
             <div class="card h-100">
-                <img src="https://via.placeholder.com/300x220?text=Alkimyogar" class="card-img-top"
+                <img src="<%=book.getImageUrl()%>" class="card-img-top"
                      alt="Alkimyogar muqovasi">
                 <div class="card-body">
                     <h5 class="card-title"><%= book.getName()%>
@@ -162,9 +160,9 @@
                     <form action="/book">
                         <input type="text" name="bookId" value="<%= book.getId() %>" hidden>
                         <input type="text" name="action" value="update" hidden>
-                        <button type="submit"><a class="btn btn-custom btn-update text-white">Update</a></button>
+                        <button type="submit" class="btn btn-secondary"><i class="fas fa-pen"></i> update</button>
                     </form>
-                    <a href="#" class="btn btn-custom btn-delete text-white "><i class="fa fa-trash"></i> Delete </a>
+                    <a href="#" class="btn btn-custom btn-delete text-white "><i class="fa fa-trash"></i> delete </a>
                     <%}%>
                 </div>
             </div>
@@ -172,6 +170,12 @@
 
         <%}%>
     </div>
+    <br>
+    <br>
+    <form action="/book">
+        <input type="text" name="action" value="create" hidden>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

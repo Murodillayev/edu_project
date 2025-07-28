@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update book</title>
+    <title>Add book</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,39 +46,34 @@
 </head>
 <body>
 <%! private List<Author> authors;%>
-<%! private Book book;%>
 <% authors = (List<Author>) request.getAttribute("authors");%>
-<% book = (Book) request.getAttribute("book");%>
 
 <h2>Kitobini tahrirlash</h2>
 
-<form action="/book" method="post">
-    <input type="text" name="id" value="<%=book.getId()%>" hidden>
-    <input type="text" name="action" value="update" hidden>
+<form action="/book" method="post" enctype="multipart/form-data">
+    <input type="text" name="action" value="create" hidden>
     <div class="form-group">
         <label for="bookName">Kitob Nomi:</label>
-        <input type="text" id="bookName" name="name" value="<%=book.getName()  %>" required>
+        <input type="text" id="bookName" name="name" required>
     </div>
     <div class="form-group">
         <label for="authorId">Muallif:</label>
         <select id="authorId" name="authorId" required>
-            <%
-                for (Author author : authors) {
-                    if (book.getAuthorId().equals(author.getId())) {
-            %>
-            <option value="<%=author.getId()%>" selected><%=author.getFirstName() + " " + author.getLastName()%>
-            </option>
-            <%} else {%>
-            <option value="<%=author.getId()%>"><%=author.getFirstName() + " " + author.getLastName()%>
-                    <%}}%>
+            <%for (Author author : authors) {%>
+               <option value="<%=author.getId()%>"><%=author.getFirstName() + " " + author.getLastName()%>
+            <%}%>
         </select>
     </div>
     <div class="form-group">
         <label for="publishYear">Nashr Yili:</label>
-        <input type="number" id="publishYear" name="publishYear" min="1900" max="2025"
-               value="<%=book.getPublishYear()%>" required>
+        <input type="number" id="publishYear" name="publishYear" min="1900" max="2025" required>
     </div>
-    <button type="submit">Update</button>
+    <div class="form-group">
+        <label for="imgFile">Kiton rasmi:</label>
+        <input type="file" id="imgFile" name="imgFile" required>
+    </div>
+    <button type="submit">Save</button>
 </form>
 </body>
 </html>
+

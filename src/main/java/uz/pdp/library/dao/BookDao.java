@@ -49,6 +49,7 @@ public class BookDao {
                 book.setId(resultSet.getString("id"));
                 book.setName(resultSet.getString("name"));
                 book.setPublishYear(resultSet.getInt("publish_year"));
+                book.setImageUrl(resultSet.getString("img_url"));
                 book.setAuthorId(resultSet.getString("author_id"));
                 books.add(book);
 
@@ -93,20 +94,21 @@ public class BookDao {
         Optional<Book> byId = findById(book.getId());
 
         try (Connection connection = DatabaseConnector.getConnection();) {
-            String sql = null;
+            String sql;
 
             if (byId.isPresent()) {
-                sql = "update book set name = ?, publish_year = ?, author_id = ? where id = ?";
+                sql = "update book set img_url = ?, name = ?, publish_year = ?, author_id = ? where id = ?";
             } else {
-                sql = "insert into book ( name, publish_year,author_id, id) values (?, ?, ?, ?)";
+                sql = "insert into book (img_url, name, publish_year,author_id, id) values (?, ?, ?, ?, ?)";
             }
 
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, book.getName());
-            preparedStatement.setInt(2, book.getPublishYear());
-            preparedStatement.setString(3, book.getAuthorId());
-            preparedStatement.setString(4, book.getId());
+            preparedStatement.setString(1, book.getImageUrl());
+            preparedStatement.setString(2, book.getName());
+            preparedStatement.setInt(3, book.getPublishYear());
+            preparedStatement.setString(4, book.getAuthorId());
+            preparedStatement.setString(5, book.getId());
             preparedStatement.executeUpdate();
 
 
