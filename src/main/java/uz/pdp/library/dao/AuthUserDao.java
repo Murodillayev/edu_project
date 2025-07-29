@@ -12,6 +12,7 @@ public class AuthUserDao {
 
     private static AuthUserDao instance;
 
+
 //    static {
 //        AuthUserDao dao = getInstance();
 //        AuthUser authUser = new AuthUser();

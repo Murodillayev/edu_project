@@ -5,15 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import uz.pdp.library.dao.AuthUserDao;
 import uz.pdp.library.model.AuthUser;
+import uz.pdp.library.repository.AuthUserRepository;
 
 import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private final AuthUserDao authUserDao = AuthUserDao.getInstance();
+    private final AuthUserRepository authUserRepository = AuthUserRepository.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        AuthUser authUser = authUserDao.findByUsername(username).orElse(null);
+        AuthUser authUser = authUserRepository.findByUsername(username).orElse(null);
         if (authUser == null || !authUser.getPassword().equals(password)) {
             req.setAttribute("error", "Invalid username or password");
             req.getRequestDispatcher("/auth/login.jsp").forward(req, resp);
